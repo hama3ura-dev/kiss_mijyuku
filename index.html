@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="ja">
+<meta charset="utf-8">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
 <script src="siori.js" type="text/javascript"></script>
-<title>���������V�X�e��"siori" Ver.2.50 �e���v���[�g�t�@�C�� (�^�b�`����Ή���)</title>
+<title>きせかえシステム"siori" Ver.2.50 テンプレートファイル (タッチ操作対応版)</title>
 <style type="text/css">
 <!--
 body {
@@ -59,7 +60,7 @@ body {
 }
 
 #celsbody img {
-	-webkit-tap-highlight-color:rgba(0,0,0,0);  /* �^�b�`����p */
+	-webkit-tap-highlight-color:rgba(0,0,0,0);  /* タッチ操作用 */
 	-webkit-user-select:none;
 	-moz-user-select:none;
 	user-select:none;
@@ -69,37 +70,37 @@ body {
 </head>
 <body onload="sioriInit(); title('off'); sets.change(0)">
 
-<!-- �^�C�g����������i�ύX�^�폜�\�ł��j-->
+<!-- タイトルここから（変更／削除可能です）-->
 <div id="title">
 <img src="title.png" width="300" alt="">
 </div>
-<!-- �^�C�g�������܂� -->
+<!-- タイトルここまで -->
 
 <div id="guide">
-�����h���b�O���ē������ĂˁB<br>
-<a href="#">�O�̃y�[�W�ɖ߂�</a> /
-<a href="javascript:void(0)" onclick="changeMode(); return false" title="���������V�X�e���̓��샂�[�h��؂�ւ��܂�">���[�h�ؑ�</a>
+服をドラッグして動かしてね。<br>
+<a href="#">前のページに戻る</a> /
+<a href="javascript:void(0)" onclick="changeMode(); return false" title="きせかえシステムの動作モードを切り替えます">モード切替</a>
 </div>
 
 <div id="celsbody">
 <script type="text/javascript">
 <!--
 title('on');
-/***** ����ݒ� *****/
-conf.snapRange  = 20;    // �Z�����X�i�b�v����͈�
-conf.titleDelay = 1500;  // �^�C�g���̕\������ (1000=1�b)
+/***** 動作設定 *****/
+conf.snapRange  = 20;    // セルをスナップする範囲
+conf.titleDelay = 1500;  // タイトルの表示時間 (1000=1秒)
 
 /**************************************************************************/
-/*   �� ������̂ǂ����΂��̃t�H�[���f�[�^�������ɓ\��t���Ă������� ��   */
+/*   ↓ しおりのどうぐばこのフォームデータをここに貼り付けてください ↓   */
 /**************************************************************************/
 
 function setChange(no)
 {
   switch (no) {
   case  0:
-    startpos("cel"); // ���Z�b�gNo.0(�Z��)
+    startpos("cel"); // ■セットNo.0(セル)
     setpos("73,278;0,0;98,550;131,285;85,539;132,1034;73,275");
-    startpos("snap"); // ���Z�b�gNo.0(�X�i�b�v)
+    startpos("snap"); // ■セットNo.0(スナップ)
     setpos("73,273;0,0;99,551;129,283;85,540;134,1036;73,270");
     break;
   default:
@@ -107,19 +108,19 @@ function setChange(no)
   }
 }
 
-cel("src:hoodie2.png; name:parker; click:3; title:�p�[�J�[�Q");
-cel("src:zenra.png; click:100; title:�{�f�B�[");
-cel("src:panty.png; click:15; title:�����p���c");
-cel("src:sports_bra.png; click:10; title:�X�|�[�c�u��");
-cel("src:short_pants.png; click:5; title:�Z�p��");
-cel("src:sneakers.png; click:3; title:�X�j�[�J�[");
-cel("src:hoodie1.png; name:parker; title:�p�[�J�[");
+cel("src:hoodie2.png; name:parker; click:3; title:パーカー２");
+cel("src:zenra.png; click:100; title:ボディー");
+cel("src:panty.png; click:15; title:女児パンツ");
+cel("src:sports_bra.png; click:10; title:スポーツブラ");
+cel("src:short_pants.png; click:5; title:短パン");
+cel("src:sneakers.png; click:3; title:スニーカー");
+cel("src:hoodie1.png; name:parker; title:パーカー");
 
 /**************************************************************************/
-/*                   �� �\��t���f�[�^�͂����܂łł� ��                   */
+/*                   ↑ 貼り付けデータはここまでです ↑                   */
 /**************************************************************************/
 
-/***** �^�b�`���� �ǉ��������� ********************************************/
+/***** タッチ処理 追加ここから ********************************************/
 
 var touch = new function() {
 	var id, scan = function(o) {
@@ -162,9 +163,9 @@ if (window.TouchEvent) sioriInit = (function(org) {
 	};
 })(sioriInit);
 
-/***** �^�b�`���� �ǉ������܂� ********************************************/
+/***** タッチ処理 追加ここまで ********************************************/
 
-function title(mode)  // �^�C�g���̕\��
+function title(mode)  // タイトルの表示
 {
 	var el;
 
@@ -180,21 +181,21 @@ function title(mode)  // �^�C�g���̕\��
 	}
 }
 
-function changeMode()  // ���[�h�ؑ�
+function changeMode()  // モード切替
 {
 	var msg = [
-		"�݊����[�h�ɐ؂�ւ��܂����H\n���삪���������ꍇ�͐؂�ւ���Ɖ��P����邱�Ƃ�����܂��B",
-		"�ʏ탂�[�h�ɐ؂�ւ��܂����H\n�\�ȏꍇ��HTML5�̋@�\�����g�p����̂ŗV�т₷���Ȃ�܂��B"
+		"互換モードに切り替えますか？\n動作がおかしい場合は切り替えると改善されることがあります。",
+		"通常モードに切り替えますか？\n可能な場合はHTML5の機能等を使用するので遊びやすくなります。"
 	][conf.safemode | 0];
 
 	if (confirm(msg)) location.href = (!conf.safemode) ? "?safe" : "?";
 }
 
-if (!ua) document.write('<p class="error textbox">��Ή��̃u���E�U�ł��B���������ŗV�Ԃɂ� IE7�ȍ~ / Mozilla Firefox �Ȃǂ�DHTML�Ή��u���E�U���K�v�ł��B<\/p>\n');
+if (!ua) document.write('<p class="error textbox">非対応のブラウザです。きせかえで遊ぶには IE7以降 / Mozilla Firefox などのDHTML対応ブラウザが必要です。<\/p>\n');
 //-->
 </script>
 <noscript>
-<p class="error textbox">JavaScript�����p�ł��܂���B���������ŗV�Ԃɂ�JavaScript��ON�ɂ��� IE7�ȍ~ / Mozilla Firefox �Ȃǂ�DHTML�Ή��u���E�U���K�v�ł��B</p>
+<p class="error textbox">JavaScriptが利用できません。きせかえで遊ぶにはJavaScriptをONにした IE7以降 / Mozilla Firefox などのDHTML対応ブラウザが必要です。</p>
 </noscript>
 </div><!-- /#celsbody -->
 
@@ -205,9 +206,9 @@ if (!ua) document.write('<p class="error textbox">��Ή��̃u���E�U�ł��B��������
 <label><input type="radio" name="setchg" value="3" onclick="sets.change(3)">3</label>
 <label><input type="radio" name="setchg" value="4" onclick="sets.change(4)">4</label>
 &nbsp;
-<input type="button" value="���Z�b�g" onclick="sets.reset('setchg')" title="�I�𒆂̃Z�b�g��������Ԃɖ߂��܂�">
+<input type="button" value="リセット" onclick="sets.reset('setchg')" title="選択中のセットを初期状態に戻します">
 </div><!-- /#set-panel -->
 
-<canvas id="imgpeek" width="1" height="1" style="visibility:hidden"></canvas><!-- �� ����canvas�^�O�͕ύX�^�폜���Ȃ��ł������� -->
+<canvas id="imgpeek" width="1" height="1" style="visibility:hidden"></canvas><!-- ← このcanvasタグは変更／削除しないでください -->
 </body>
 </html>
